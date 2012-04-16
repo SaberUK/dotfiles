@@ -1,0 +1,10 @@
+# Misc
+.*
+!.git*
+
+# Mac OS X
+.DS_Store
+
+# Windows
+desktop.ini
+thumbs.db
