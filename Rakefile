@@ -14,6 +14,8 @@ desc 'Install dotfiles'
 task :install do
 	Dir.glob("*").each do |entry|
 		next if ExcludeFiles.include?(entry)
-		sh "cp -R #{File.expand_path(entry)} ~/.#{entry}"
+		full_entry = File.expand_path(entry)
+		sh "rm -fRv ~/.#{entry}"
+		sh "cp -Rv #{full_entry} ~/.#{entry}"
 	end
 end
