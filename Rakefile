@@ -4,7 +4,7 @@
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 
-ExcludeFiles = [ 'Rakefile', 'README.md' ].freeze
+ExcludeFiles = [ '.gitignore', 'Rakefile', 'README.md' ].freeze
 
 task :default do
 	print `rake --tasks`
