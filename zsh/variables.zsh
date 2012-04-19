@@ -10,9 +10,9 @@ unset HISTFILE
 # Misc
 export BROWSER='/usr/bin/open'
 export EDITOR='/usr/bin/nano'
-export HOMEBREW='/brew'
 export MANPAGER='/bin/cat'
 export PS1='%n@%m:%~$ '
+export TRASH='~/.Trash'
 
 # Scripts
 if [ -d "$HOME/bin" ]; then
@@ -20,12 +20,15 @@ if [ -d "$HOME/bin" ]; then
 fi
 
 # Homebrew
-if [ -d "$HOMEBREW/bin" ]; then
-	export PATH="$HOMEBREW/bin:$PATH"
+export HOMEBREW_BUILD_FROM_SOURCE='1'
+export HOMEBREW_MAKE_JOBS='2'
+export HOMEBREW_ROOT='/brew'
+if [ -d "$HOMEBREW_ROOT/bin" ]; then
+	export PATH="$HOMEBREW_ROOT/bin:$PATH"
 fi
 
 # RubyGems
-if [ -f "$HOMEBREW/bin/gem" ]; then
-	export GEM_HOME=$HOMEBREW
-	export GEM_PATH=$HOMEBREW
+if [ -f "$HOMEBREW_ROOT/bin/gem" ]; then
+	export GEM_HOME=$HOMEBREW_ROOT
+	export GEM_PATH=$HOMEBREW_ROOT
 fi
