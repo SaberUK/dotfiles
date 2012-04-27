@@ -1,6 +1,8 @@
 [user]
 	name = Peter Powell
 	email = petpow@saberuk.com
+
 [alias]
 	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	rev = rev-parse --verify HEAD	
 	unstage = reset --mixed HEAD
