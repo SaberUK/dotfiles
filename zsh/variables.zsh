@@ -31,5 +31,5 @@ fi
 if [ -f "$HOMEBREW_ROOT/bin/gem" ]; then
 	export GEM_HOME='/Library/Ruby/1.9'
 	export GEM_PATH=$GEM_HOME
-	export PATH="$GEM_HOME:$PATH"
+	export PATH="$GEM_HOME/bin:$PATH"
 fi
