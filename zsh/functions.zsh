@@ -9,12 +9,3 @@ function command_not_found_handler()
 	# TODO: port command-not-found from debian.
 	echo "zsh: command not found: $argv"
 }
-
-function printenv()
-{
-	if [ -z "$1" ]; then
-		command printenv | sort
-	else
-		command printenv $argv
-	fi
-}
