@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'digest/sha1'
+require 'find'
+if ARGV.size < 1
+	puts 'Syntax: dupfind <dir> [rm]'
+	exit 1
+else
+	file_hashes = {}
+	Find.find(ARGV[0]).each do |file|
+		next if File.directory?(file)
+		file = File.expand_path(file)
+		file_hash = Digest::SHA1.file(file).hexdigest
+		if file_hashes.include?(file_hash)
+			puts "#{file} is a duplicate of #{file_hashes[file_hash]}!"
+			if ARGV.size >= 2 && ARGV[1] == 'rm'
+				File.delete(file)
+				puts "#{file} has been deleted!"
+			end
+		end
+		file_hashes[file_hash] = file
+	end
+end

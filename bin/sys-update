@@ -1,0 +1,12 @@
+#!/bin/sh
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+brew update
+brew upgrade
+brew cleanup
+gem update --system
+gem update
+gem cleanup
