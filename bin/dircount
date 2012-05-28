@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'find'
+if ARGV.size < 1
+	puts 'Syntax: dircount <dir> [all] [rec]'
+	exit 1
+else
+	dir_count = {}
+	Find.find(ARGV[0]).each do |file|
+		next unless File.directory?(file)
+		next if file == '.'
+		unless ARGV.size >= 2 && ARGV[1..-1].include?('all')
+			next if file[1..-1].include?('/.')
+		end
+		unless ARGV.size >= 2 && ARGV[1..-1].include?('rec')
+			next if file[2..-1].include?('/')
+		end
+		dir_count[file] = Dir.entries(file).count - 2
+	end
+	dir_count.sort_by { |dir| dir[1] }.reverse.each do |dir, count|
+		puts "#{count}: #{dir[2..-1]}"
+	end
+end
