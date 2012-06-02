@@ -15,6 +15,7 @@ alias l='ls' # Shortcut.
 alias cls='clear'
 alias dir='ls'
 alias start='open'
+alias tracert='traceroute'
 
 # Misc aliases
 alias mkdir='mkdir -p' # Create intermediate directories as required.
