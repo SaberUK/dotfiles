@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+if ARGV.size < 1
+	puts 'Syntax: eolstats <file>'
+	exit 1
+else
+	file_contents = File.read(File.expand_path(ARGV[0]))
+	win_count = file_contents.scan(/\r\n/).size
+	mac_count = file_contents.scan(/\r/).size - win_count
+	unix_count = file_contents.scan(/\n/).size - win_count
+	puts "Windows EOLs: #{win_count}"
+	puts "Old Mac EOLs: #{mac_count < 0 ? 0 : mac_count}"
+	puts "UNIX EOLs: #{unix_count < 0 ? 0 : unix_count}"
+end
