@@ -4,22 +4,24 @@
 # ==============================================================================
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
+require 'fileutils'
 require 'find'
 if ARGV.size < 1
 	puts 'Syntax: rmjunk <dir> [sim]'
 	exit 1
 else
-	JunkItems = [ '._*', '.*_history', '.DS_Store', '.localized', '.TemporaryItems', 'desktop.ini', 'Thumbs.db' ].freeze
+	JUNK_ITEMS = [ '._*', '.*_history', '.DS_Store', '.TemporaryItems', 'desktop.ini', 'Thumbs.db' ].freeze
+	SKIP_DIRS = [ '.git' ]
 	Find.find(ARGV[0]).each do |file|
-		next if File.directory?(file)
+		next if File.directory?(file) && SKIP_DIRS.include?(file)
 		file_path = File.expand_path(file)
 		file_name = File.basename(file)
-		JunkItems.each do |junk_item|
+		JUNK_ITEMS.each do |junk_item|
 			if File.fnmatch(junk_item, file_name)
 				if ARGV.size >= 2 && ARGV[1] == 'sim'
 					puts "#{file_path} would be deleted!"
 				else
-					File.delete(file)
+					FileUtils.rm_rf(file)
 					puts "#{file_path} has been deleted!"
 				end
 			end
