@@ -10,7 +10,7 @@ unset HISTFILE
 # Misc
 export BROWSER='/usr/bin/open'
 export EDITOR='/usr/bin/nano'
-export MANPAGER='/bin/cat'
+export PAGER='/bin/cat'
 export PS1='%n@%m:%~$ '
 export TRASH='~/.Trash'
 
