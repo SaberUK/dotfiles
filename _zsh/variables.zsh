@@ -10,8 +10,8 @@ unset HISTFILE
 # Misc
 export BROWSER='/usr/bin/open'
 export EDITOR='/usr/bin/nano'
-export PAGER='/bin/cat'
 export PS1='%n@%m:%~$ '
+export LESS='--chop-long-lines'
 export TRASH='~/.Trash'
 
 # Scripts
