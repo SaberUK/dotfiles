@@ -1,0 +1,13 @@
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
+begin
+	Dir.glob("#{ENV['HOME']}/.irb/*.irb").each do |entry|
+ 		load entry
+	end
+rescue Exception => e
+	puts "#{e.class}: #{e.message}"
+end
