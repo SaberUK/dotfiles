@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'date'
+require 'fileutils'
+links = []
+target_base = File.expand_path('~/Dropbox/Public')
+target_route = Date.today.strftime('%Y/%B')
+Dir.glob("#{ENV['HOME']}/Desktop/Screen*.png").each do |screenshot|
+	FileUtils.move(screenshot, "#{target_base}/#{target_route}")
+	links << "https://dl.dropbox.com/u/14234621/#{target_route}/#{File.basename(screenshot).gsub(' ', '%20')}"
+end
+IO.popen('pbcopy', 'r+') do |clipboard|
+	clipboard.print(links.join(' '))
+end unless links.size < 1
+puts "#{links.size} link(s) have been copied to the clipboard."
