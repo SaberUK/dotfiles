@@ -18,6 +18,7 @@ alias start='open'
 alias tracert='traceroute'
 
 # Misc aliases
+alias jem='jruby -S gem' # Run RubyGems with JRuby.
 alias mkdir='mkdir -p' # Create intermediate directories as required.
 alias preview='open -a Preview'
 alias printenv='printenv-rb'
