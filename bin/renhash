@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'digest/sha1'
+require 'find'
+if ARGV.size < 1
+	puts 'Syntax: renhash <dir> [sim]'
+	exit 1
+else
+	Find.find(ARGV[0]).each do |file|
+		next if File.directory?(file)
+		next if file[2] == '.'
+		file = File.expand_path(file)
+		new_file_dir = File.dirname(file)
+		new_file_hash = Digest::SHA1.file(file).hexdigest
+		new_file_extension = File.extname(file)
+		new_file = [new_file_dir, '/', new_file_hash, new_file_extension].join
+		next if new_file == file
+		if ARGV.size >= 2 && ARGV[1] == 'sim'					
+			puts "#{file} would be renamed to #{new_file}!"
+		else
+			File.rename(file, new_file)
+			puts "#{file} has been renamed to #{new_file}!"
+		end
+	end
+end
