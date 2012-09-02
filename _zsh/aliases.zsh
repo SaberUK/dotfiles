@@ -4,6 +4,11 @@
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 
+# JRuby aliases
+alias jake='jruby -S rake' # Rake
+alias jem='jruby -S gem' # RubyGems
+alias jrb='jruby -S irb' # Interactive Ruby
+
 # LS aliases.
 alias ls='ls -FLh' # Show entry types, follow symlinks, use unit suffixes.
 alias la='ls -A' # Show almost all entries.
@@ -18,7 +23,6 @@ alias start='open'
 alias tracert='traceroute'
 
 # Misc aliases
-alias jem='jruby -S gem' # Run RubyGems with JRuby.
 alias mkdir='mkdir -p' # Create intermediate directories as required.
 alias preview='open -a Preview'
 alias printenv='printenv-rb'
