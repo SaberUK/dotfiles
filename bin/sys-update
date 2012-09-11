@@ -6,7 +6,7 @@
 # ==============================================================================
 brew update
 brew upgrade
-brew cleanup
+brew cleanup -s
 gem update --system
 gem update
 gem cleanup
