@@ -6,7 +6,7 @@
 
 def pbcopy(data)
 	IO.popen('pbcopy', 'r+') do |clipboard|
-		clipboard.puts(data.inspect)
+		clipboard.print(data.to_s)
 	end
 end
 
