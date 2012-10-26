@@ -1,3 +1,9 @@
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
 [alias]
 	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	rev = rev-parse --verify HEAD	
