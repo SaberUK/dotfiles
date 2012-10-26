@@ -5,7 +5,7 @@
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 if ARGV.size < 1
-	puts 'Syntax: eolstats <file>'
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <file>"
 	exit 1
 else
 	file_contents = File.read(File.expand_path(ARGV[0]))

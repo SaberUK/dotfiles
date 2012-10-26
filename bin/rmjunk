@@ -7,7 +7,7 @@
 require 'fileutils'
 require 'find'
 if ARGV.size < 1
-	puts 'Syntax: rmjunk <dir> [sim]'
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir> [sim]"
 	exit 1
 else
 	JUNK_ITEMS = [ '._*', '.*_history', '.DS_Store', '.TemporaryItems', 'desktop.ini', 'Thumbs.db' ].freeze

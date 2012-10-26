@@ -6,7 +6,7 @@
 # ==============================================================================
 require 'find'
 if ARGV.size < 1
-	puts 'Syntax: dircount <dir> [all] [rec]'
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir> [all] [rec]"
 	exit 1
 else
 	dir_count = {}

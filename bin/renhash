@@ -7,7 +7,7 @@
 require 'digest/sha1'
 require 'find'
 if ARGV.size < 1
-	puts 'Syntax: renhash <dir> [sim]'
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir> [sim]"
 	exit 1
 else
 	Find.find(ARGV[0]).each do |file|

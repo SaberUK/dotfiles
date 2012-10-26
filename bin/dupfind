@@ -7,7 +7,7 @@
 require 'digest/sha1'
 require 'find'
 if ARGV.size < 1
-	puts 'Syntax: dupfind <dir> [rm]'
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir> [rm]"
 	exit 1
 else
 	file_hashes = {}
