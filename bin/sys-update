@@ -4,9 +4,18 @@
 # ==============================================================================
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
-brew update
-brew upgrade
-brew cleanup -s
-gem update --system
-gem update
-gem cleanup
+
+if [[ `uname -s` == 'Darwin' ]]; then
+	brew update
+	brew upgrade
+	brew cleanup -s
+	gem update --system
+	gem update
+	gem cleanup
+elif [[ `uname -s` == 'Linux' ]]; then
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get autoclean
+	sudo gem update 
+	sudo gem cleanup
+fi
