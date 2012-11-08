@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+if ARGV.size < 1
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <volume>"
+	exit 1
+elsif /^\d+(?:\.\d+)?$/ !~ ARGV[0]
+	puts 'Error: volume must be a valid decimal number between 0 and 100!'
+	exit 1
+elsif Float(ARGV[0]) < 0 || Float(ARGV[0]) > 100
+	puts 'Error: volume must be a valid decimal number between 0 and 100!'
+	exit 1
+end
+system('osascript', '-e', "set volume output volume #{ARGV[0]}")
