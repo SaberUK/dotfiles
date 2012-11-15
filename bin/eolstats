@@ -5,14 +5,19 @@
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 if ARGV.size < 1
-	puts "Syntax: #{File.basename($PROGRAM_NAME)} <file>"
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <file>..."
 	exit 1
 else
-	file_contents = File.read(File.expand_path(ARGV[0]))
-	win_count = file_contents.scan(/\r\n/).size
-	mac_count = file_contents.scan(/\r/).size - win_count
-	unix_count = file_contents.scan(/\n/).size - win_count
-	puts "Windows EOLs: #{win_count}"
-	puts "Old Mac EOLs: #{mac_count < 0 ? 0 : mac_count}"
-	puts "UNIX EOLs: #{unix_count < 0 ? 0 : unix_count}"
+	ARGV.each do |file|
+		if File.directory?(file)
+			system($PROGRAM_NAME, *Dir.glob("#{file}/**"))
+			next
+		end
+		file_contents = File.read(File.expand_path(file))
+		message = {}
+		message['CR+LF'] = file_contents.scan(/\r\n/).size
+		message['CR'] = [file_contents.scan(/\r/).size - message['CR+LF'], 0].max
+		message['LF'] = [file_contents.scan(/\n/).size - message['CR+LF'], 0].max
+		puts file + ' - ' + message.map { |type, count| "#{type}: #{count}" }.join(', ')
+	end
 end
