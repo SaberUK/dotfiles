@@ -25,5 +25,4 @@ alias tracert='traceroute'
 # Misc aliases
 alias mkdir='mkdir -p' # Create intermediate directories as required.
 alias preview='open -a Preview'
-alias printenv='printenv-rb'
 alias ssp='ssh -D 12468' # Create a local SOCKS server which tunnels over SSH.

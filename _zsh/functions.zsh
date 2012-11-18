@@ -1,15 +1,14 @@
-#!/usr/bin/env ruby
 # ==============================================================================
 # SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
 # ==============================================================================
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
-if ARGV.size < 1
-	env = ENV.to_hash.sort
-	env.each do |key, value|
-		puts "#{key}=#{value}"
-	end
-else
-	exit 1 unless ENV.include?(ARGV[0])
-	puts ENV.fetch(ARGV[0])
-end
+
+function printenv()
+{
+	if [ -z "$1" ]; then
+		command printenv | sort
+	else
+		command printenv $argv
+	fi
+}
