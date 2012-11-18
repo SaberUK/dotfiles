@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'digest/sha1'
+require 'find'
+if ARGV.size < 3
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <old> <new> <out> [verbose]"
+	exit 1
+else
+	begin
+		require 'chunky_png'
+	rescue ::LoadError
+		puts 'Error: the chunky_png gem is not installed!'
+		exit 1
+	end
+	old_png = ChunkyPNG::Image.from_file(ARGV[0])
+	new_png = ChunkyPNG::Image.from_file(ARGV[1])
+	if old_png.height != new_png.height || old_png.width != new_png.width
+		puts 'Error: unable to compare images of different sizes!'
+		exit 1
+	end
+	diff_png = ChunkyPNG::Image.new(old_png.width, old_png.height)
+	old_png.height.times do |x|
+		old_png.width.times do |y|
+			if old_png.get_pixel(x, y) != new_png.get_pixel(x, y)
+				if ARGV.size >= 4 && ARGV[3] == 'verbose'
+					puts "Pixel at #{x}:#{y} is different!"
+				end
+				diff_png.set_pixel(x, y, old_png.get_pixel(x, y))
+			end
+		end
+	end
+	diff_png.save(ARGV[2])
+end
