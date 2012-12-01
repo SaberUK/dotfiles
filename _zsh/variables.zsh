@@ -29,7 +29,7 @@ fi
 
 # RubyGems
 if [ -f "$HOMEBREW_ROOT/bin/gem" ]; then
-	export GEM_HOME='/Library/Ruby/1.9'
+	export GEM_HOME="$HOMEBREW_ROOT/lib/ruby/gems/1.9.1"
 	export GEM_PATH=$GEM_HOME
 	export PATH="$GEM_HOME/bin:$PATH"
 fi
