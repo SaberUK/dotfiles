@@ -6,7 +6,8 @@
 
 [alias]
 	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	rev = rev-parse --verify HEAD	
+	rev = rev-parse --verify HEAD
+	rmdel = !git rm $(git ls-files --deleted)
 	unstage = reset --mixed HEAD
 
 [user]
