@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
+remove:
+  - '._*'
+  - '.*_history'
+  - '.*-history'
+  - '*.LSSharedFileList.plist'
+  - '*.rbc'
+  - '.bzr.log'
+  - '.DS_Store'
+  - '.TemporaryItems'
+  - 'desktop.ini'
+  - 'Thumbs.db'
+
+skip:
+  - '.git'
+  - '.svn'
