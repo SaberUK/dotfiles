@@ -1,10 +1,8 @@
-# Misc
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
 .*
 !.git*
-
-# Mac OS X
-.DS_Store
-
-# Windows
-desktop.ini
-thumbs.db
