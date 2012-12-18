@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'webrick'
+if ARGV.size < 1
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir>"
+	exit 1
+else
+	server = WEBrick::HTTPServer.new(Address: '0.0.0.0', Port: 9999, DocumentRoot: ARGV[0])
+	trap 'INT' do
+		server.shutdown
+	end
+	server.start
+end
