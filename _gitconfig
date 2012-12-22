@@ -10,6 +10,9 @@
 	rmdel = !git rm $(git ls-files --deleted)
 	unstage = reset --mixed HEAD
 
+[branch]
+	autosetuprebase = always
+
 [user]
 	name = Peter Powell
 	email = petpow@saberuk.com
