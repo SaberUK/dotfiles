@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+require 'find'
+if ARGV.size < 3
+	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir> <old> <new> [sim]"
+	exit 1
+else
+	Find.find(ARGV[0]).each do |file|
+		next if File.directory?(file)
+		next unless File.extname(file) == ARGV[1]
+		new_file = file.chomp(ARGV[1]) + ARGV[2]
+		if ARGV.size >= 4 && ARGV[3] == 'sim'					
+			puts "#{file} would be renamed to #{new_file}!"
+		else
+			File.rename(file, new_file)
+			puts "#{file} has been renamed to #{new_file}!"
+		end
+	end
+end
