@@ -9,6 +9,7 @@ remove:
   - '._*'
   - '.*_history'
   - '.*-history'
+  - '.*hst'
   - '*.LSSharedFileList.plist'
   - '*.rbc'
   - '.bzr.log'
