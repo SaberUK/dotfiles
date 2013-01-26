@@ -23,6 +23,7 @@ alias start='open'
 alias tracert='traceroute'
 
 # Misc aliases
+alias bmake='bsdmake'
 alias gmake='make'
 alias mkdir='mkdir -p' # Create intermediate directories as required.
 alias preview='open -a Preview'
