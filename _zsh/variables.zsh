@@ -23,6 +23,7 @@ fi
 # Homebrew
 export HOMEBREW_BUILD_FROM_SOURCE='1'
 export HOMEBREW_MAKE_JOBS='4'
+export HOMEBREW_NO_EMOJI='1'
 export HOMEBREW_ROOT='/brew'
 if [ -d "$HOMEBREW_ROOT/bin" ]; then
 	export PATH="$HOMEBREW_ROOT/bin:$PATH"
