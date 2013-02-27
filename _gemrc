@@ -4,4 +4,4 @@
 # Copyright (C) 2012 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 
-gem: --no-rdoc --no-ri
+gem: --no-document --no-rdoc --no-ri
