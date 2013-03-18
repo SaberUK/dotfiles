@@ -1,0 +1,14 @@
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012-2013 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
+# http://pablotron.org/software/wirble/
+begin
+	require 'wirble'
+	Wirble.init
+	Wirble.colorize
+rescue LoadError => e
+	warn "Couldn't load Wirble: #{e}"
+end
