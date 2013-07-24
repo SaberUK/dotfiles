@@ -24,14 +24,13 @@ fi
 export HOMEBREW_BUILD_FROM_SOURCE='1'
 export HOMEBREW_MAKE_JOBS='4'
 export HOMEBREW_NO_EMOJI='1'
-export HOMEBREW_ROOT='/brew'
-if [ -d "$HOMEBREW_ROOT/bin" ]; then
-	export PATH="$HOMEBREW_ROOT/bin:$PATH"
+if [ -d "/brew/bin" ]; then
+	export PATH="/brew/bin:$PATH"
 fi
 
 # RubyGems
-if [ -f "$HOMEBREW_ROOT/bin/gem" ]; then
-	export GEM_HOME="$HOMEBREW_ROOT/lib/ruby/gems"
+if [ -f "/brew/bin/gem" ]; then
+	export GEM_HOME="/brew/lib/ruby/gems"
 	export GEM_PATH=$GEM_HOME
 	export PATH="$GEM_HOME/bin:$PATH"
 fi
