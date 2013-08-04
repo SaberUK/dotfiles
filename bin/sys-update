@@ -5,14 +5,16 @@
 # Copyright (C) 2012-2013 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 
-if [[ `uname -s` == 'Darwin' ]]; then
+SYSTEM=`uname -s`
+
+if [[ ${SYSTEM} == 'Darwin' ]]; then
 	brew update
 	brew upgrade
 	brew cleanup -s
 	gem update --system
 	gem update
 	gem cleanup
-elif [[ `uname -s` == 'Linux' ]]; then
+elif [[ ${SYSTEM} == 'Linux' ]]; then
 	sudo apt-get update
 	sudo apt-get upgrade
 	sudo apt-get autoclean
