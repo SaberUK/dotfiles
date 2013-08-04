@@ -12,7 +12,7 @@ target_route = Date.today.strftime('%Y/%B')
 Dir.mkdir("#{target_base}/#{target_route}") unless File.directory?("#{target_base}/#{target_route}")
 Dir.glob("#{ENV['HOME']}/Desktop/Screen*.png").each do |screenshot|
 	FileUtils.move(screenshot, "#{target_base}/#{target_route}")
-	links << "https://dl.dropbox.com/u/14234621/#{target_route}/#{File.basename(screenshot).gsub(' ', '%20')}"
+	links << "https://dl.dropboxusercontent.com/u/14234621/#{target_route}/#{File.basename(screenshot).gsub(' ', '%20')}"
 end
 IO.popen('pbcopy', 'r+') do |clipboard|
 	clipboard.print(links.join(' '))
