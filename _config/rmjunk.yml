@@ -19,4 +19,5 @@ remove:
 
 skip:
   - '.git'
+  - '.hg'
   - '.svn'
