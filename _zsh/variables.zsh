@@ -34,3 +34,8 @@ if [ -f "/brew/bin/gem" ]; then
 	export GEM_PATH=$GEM_HOME
 	export PATH="$GEM_HOME/bin:$PATH"
 fi
+
+# Custom extras
+for DIRECTORY in $(find /opt/*/bin -type d); do
+	export PATH=$DIRECTORY:$PATH
+done
