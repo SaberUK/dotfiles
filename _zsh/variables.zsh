@@ -11,7 +11,7 @@ unset HISTFILE
 export BROWSER='/usr/bin/open'
 export EDITOR='/usr/bin/nano'
 export PS1='%n@%m:%~$ '
-export LESS='--chop-long-lines'
+export LESS='--chop-long-lines --raw-control-chars'
 export SOURCEMOD='/opt/sourcemod'
 export TRASH='~/.Trash'
 
