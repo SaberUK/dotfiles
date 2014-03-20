@@ -36,6 +36,7 @@ if [ -f "/brew/bin/gem" ]; then
 fi
 
 # Custom extras
+export CMAKE_PREFIX_PATH=$(echo /opt/qt/*/clang_64)
 for DIRECTORY in $(find /opt/*/bin -type d); do
 	export PATH=$DIRECTORY:$PATH
 done
