@@ -13,7 +13,6 @@ export EDITOR='/usr/bin/nano'
 export PS1='%n@%m:%~$ '
 export LESS='--chop-long-lines --raw-control-chars'
 export SOURCEMOD='/opt/sourcemod'
-export TRASH='~/.Trash'
 
 # Scripts
 if [ -d "$HOME/bin" ]; then
