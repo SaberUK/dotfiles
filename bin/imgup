@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
+%w(fileutils json net/http uri yaml).each do |lib|
+	require lib
+end
+
+config = YAML.load_file "#{Dir.home}/.config/imgur.yml"
+unless config.has_key? 'id'
+	puts 'Fatal error: configuration file is missing the client id!'
+	exit 1
+end
+
+links = Array.new
+uri = URI.parse 'https://api.imgur.com/3/upload'
+
+Dir["#{Dir.home}/Desktop/Screen*.png"].each do |file|
+	puts "Uploading '#{File.basename file}'..."
+
+	http = Net::HTTP.new uri.host, uri.port
+	http.use_ssl = true
+
+	request = Net::HTTP::Post.new uri.path
+	request['Authorization'] = "Client-ID #{config['id']}"
+	request.form_data = { image: File.binread(file) }
+
+	response = http.request request
+	document = JSON.parse response.body
+
+	unless document['success']
+		puts "An error occurred while uploading this image:"
+		puts "HTTP #{document['status']}: #{document['data']['error']}"
+		exit 1
+	end
+
+	links << document['data']['link']
+	puts "Upload complete -- #{document['data']['link']}"
+
+	FileUtils.move file, "#{Dir.home}/Pictures/Screenshots"
+end
+
+if links.size > 0
+	IO.popen 'pbcopy', 'r+' do |clipboard|
+		clipboard.print links.join ' '
+	end
+
+	message = "#{links.size} link(s) have been copied to the clipboard."
+	unless system 'terminal-notifier', '-title', 'Imgur upload complete!', '-message', message
+		puts "#{message}\a"
+	end
+end
