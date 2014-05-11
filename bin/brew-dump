@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
+unless system 'brew --version > /dev/null 2>&1'
+	puts 'Fatal error: Homebrew is not installed and/or in the PATH!'
+	exit 1
+end
+
+File.open 'Brewfile', 'w+' do |fh|
+	fh.puts "# Brewfile generated using #{File.basename $PROGRAM_NAME} on #{Time.now}"
+	`brew tap 2>/dev/null`.split.each do |tap|
+		fh.puts "tap #{tap}"
+	end
+	`brew list 2>/dev/null`.split.each do |pkg|
+		if `brew info #{pkg} 2>/dev/null` =~ /Built\sfrom\ssource\swith:\s(.+)+/
+			fh.puts "install #{pkg} #{$~[1].gsub ',', ''}"
+		else
+			fh.puts "install #{pkg}"
+		end
+	end
+end
