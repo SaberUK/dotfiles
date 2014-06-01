@@ -12,6 +12,7 @@
 	unstage = reset --mixed HEAD
 
 [branch]
+	autosetupmerge = always
 	autosetuprebase = always
 
 [user]
