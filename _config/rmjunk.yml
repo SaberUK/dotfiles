@@ -14,6 +14,7 @@ remove:
   - '.bzr.log'
   - '.dub'
   - '.DS_Store'
+  - '*.pyc'
   - '.rust'
   - '.TemporaryItems'
   - 'desktop.ini'
