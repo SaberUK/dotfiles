@@ -5,20 +5,21 @@
 # ==============================================================================
 
 remove:
-  - '._*'
-  - '.*_history'
-  - '.*-history'
-  - '.*hst'
   - '*.LSSharedFileList.plist'
+  - '*.pyc'
   - '*.rbc'
+  - '.*-history'
+  - '.*_history'
+  - '.*hst'
+  - '.AppleDouble'
+  - '.DS_Store'
+  - '.TemporaryItems'
+  - '._*'
   - '.bzr.log'
   - '.dub'
-  - '.DS_Store'
-  - '*.pyc'
   - '.rust'
-  - '.TemporaryItems'
-  - 'desktop.ini'
   - 'Thumbs.db'
+  - 'desktop.ini'
 
 skip:
   - '.git'
