@@ -5,7 +5,7 @@
 # Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 
-%w(fileutils json net/http uri yaml).each do |lib|
+%w(fileutils json net/http ostruct uri yaml).each do |lib|
 	require lib
 end
 
@@ -28,9 +28,14 @@ Dir["#{Dir.home}/Desktop/Screen*.png"].each do |file|
 	request['Authorization'] = "Client-ID #{config['id']}"
 	request.form_data = { image: File.binread(file) }
 
-	response = http.request request
-	document = JSON.parse response.body
+	response = http.request(request) rescue OpenStruct.new(code: 999, message: 'No Internet Connection')
+	unless response.is_a? Net::HTTPSuccess
+		puts "An error occurred while uploading this image:"
+		puts "HTTP #{response.code}: #{response.message}"
+		exit 1
+	end
 
+	document = JSON.parse response.body
 	unless document['success']
 		puts "An error occurred while uploading this image:"
 		puts "HTTP #{document['status']}: #{document['data']['error']}"
