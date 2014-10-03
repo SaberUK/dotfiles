@@ -6,7 +6,6 @@
 
 remove:
   - '*.LSSharedFileList.plist'
-  - '*.pyc'
   - '*.rbc'
   - '.*-history'
   - '.*_history'
