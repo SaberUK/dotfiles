@@ -10,11 +10,13 @@ unless system 'brew --version > /dev/null 2>&1'
 	exit 1
 end
 
-File.open 'Brewfile', 'w+' do |fh|
+File.open 'Brewfile', 'w' do |fh|
 	fh.puts "# Brewfile generated using #{File.basename $PROGRAM_NAME} on #{Time.now}"
+
 	`brew tap 2>/dev/null`.split.each do |tap|
 		fh.puts "tap #{tap}"
 	end
+
 	`brew list 2>/dev/null`.split.each do |pkg|
 		if `brew info #{pkg} 2>/dev/null` =~ /Built\sfrom\ssource\swith:\s(.+)+/
 			fh.puts "install #{pkg} #{$~[1].gsub ',', ''}"

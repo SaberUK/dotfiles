@@ -4,20 +4,23 @@
 # ==============================================================================
 # Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
+
 if ARGV.size < 1
-	puts "Syntax: #{File.basename($PROGRAM_NAME)} <file>..."
+	puts "Syntax: #{File.basename $PROGRAM_NAME} <file>..."
 	exit 1
-else
-	ARGV.each do |file|
-		if File.directory?(file)
-			system($PROGRAM_NAME, *Dir.glob("#{file}/**"))
-			next
-		end
-		file_contents = File.read(File.expand_path(file))
-		message = {}
-		message['CR+LF'] = file_contents.scan(/\r\n/).size
-		message['CR'] = [file_contents.scan(/\r/).size - message['CR+LF'], 0].max
-		message['LF'] = [file_contents.scan(/\n/).size - message['CR+LF'], 0].max
-		puts file + ' - ' + message.map { |type, count| "#{type}: #{count}" }.join(', ')
+end
+
+ARGV.each do |file|
+	if File.directory? file
+		system $PROGRAM_NAME, *Dir['#{file}/**']
+		next
 	end
+
+	file_contents = File.read File.expand_path file
+
+	message = { }
+	message['CR+LF'] = file_contents.scan(/\r\n/).size
+	message['CR'] = [ file_contents.scan(/\r/).size - message['CR+LF'], 0 ].max
+	message['LF'] = [ file_contents.scan(/\n/).size - message['CR+LF'], 0 ].max
+	puts file + ' - ' + message.map { |type, count| "#{type}: #{count}" }.join(', ')
 end

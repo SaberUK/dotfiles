@@ -5,19 +5,32 @@
 # Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
 
-SYSTEM=`uname -s`
+if apt-get --version >/dev/null 2>&1
+then
+	echo 'Updating APT ...'
+	sudo apt-get update &&
+	sudo apt-get upgrade &&
+	sudo apt-get autoclean &&
+	sudo apt-get autoremove
+fi
 
-if [[ ${SYSTEM} == 'Darwin' ]]; then
-	brew update
-	brew upgrade
+if brew --version >/dev/null 2>&1
+then
+	echo 'Updating Homebrew ...'
+	brew update &&
+	brew upgrade &&
 	brew cleanup -s
-	gem update --system
-	gem update
-	gem cleanup
-elif [[ ${SYSTEM} == 'Linux' ]]; then
-	sudo apt-get update
-	sudo apt-get upgrade
-	sudo apt-get autoclean
-	sudo gem update 
-	sudo gem cleanup
+fi
+
+if gem --version >/dev/null 2>&1
+then
+	echo 'Updating RubyGems ...'
+	export GEM_CMD='gem'
+	if [ ! -w `gem env gemdir` ]
+	then
+		export GEM_CMD='sudo gem'
+	fi
+	$GEM_CMD update --system
+	$GEM_CMD update &&
+	$GEM_CMD cleanup
 fi

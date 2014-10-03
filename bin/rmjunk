@@ -4,27 +4,36 @@
 # ==============================================================================
 # Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
-require 'fileutils'
-require 'find'
-require 'yaml'
+
 if ARGV.size < 1
-	puts "Syntax: #{File.basename($PROGRAM_NAME)} <dir> [sim]"
+	puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> [sim]"
 	exit 1
-else
-	CONFIG = YAML.load_file(File.expand_path('~/.config/rmjunk.yml')).freeze
-	Find.find(ARGV[0]).each do |file|
-		next if File.directory?(file) && CONFIG['skip'].include?(file)
-		file_path = File.expand_path(file)
-		file_name = File.basename(file)
-		CONFIG['remove'].each do |junk_item|
-			if File.fnmatch(junk_item, file_name)
-				if ARGV.size >= 2 && ARGV[1] == 'sim'
-					puts "#{file_path} would be deleted!"
-				else
-					FileUtils.rm_rf(file)
-					puts "#{file_path} has been deleted!"
-				end
-			end
+end
+
+%w(fileutils find yaml).each do |lib|
+	require lib
+end
+
+config = YAML.load_file "#{Dir.home}/.config/rmjunk.yml"
+unless config.has_key?('remove') && config.has_key?('skip')
+	puts 'Fatal error: configuration file is missing the remove and/or skip entries!'
+	exit 1
+end
+
+Find.find(ARGV[0]).each do |path|
+	file = File.basename path
+
+	if File.directory?(file) && config['skip'].include?(file)
+		puts "Skipping #{path}."
+		Find.prune
+	end
+
+	unless config['remove'].select { |f| File.fnmatch f, file }.empty?
+		if ARGV.size >= 2 && ARGV[1] == 'sim'
+			puts "#{path} would be deleted."
+		else
+			FileUtils.rm_rf file
+			puts "#{path} has been deleted."
 		end
 	end
 end

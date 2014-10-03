@@ -4,33 +4,36 @@
 # ==============================================================================
 # Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
+
 if ARGV.size < 1
-	puts "Syntax: #{File.basename($PROGRAM_NAME)} <title> [watch]"
+	puts "Syntax: #{File.basename $PROGRAM_NAME} <title> [watch]"
 	exit 1
-else
-	begin
-		require 'sqlite3'
-	rescue ::LoadError
-		puts 'Error: the sqlite3 gem is not installed!'
-		exit 1
-	end
-	db_file = File.expand_path '~/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV1.storedata'
-	db_handle =  SQLite3::Database.new db_file
-	watch = ARGV.size >= 2 && ARGV[1..-1].include?('watch')
-	begin
-		db_handle.execute('SELECT Z_PK, ZTITLE FROM ZNOTE').each do |title|
-			next unless title[1].include? ARGV[0]
-			db_handle.execute("SELECT ZHTMLSTRING FROM ZNOTEBODY WHERE ZNOTE = #{title[0]}").each do |body|
-				file_name = title[1].gsub(/\W/, '_').gsub(/__/, '_') + '.html'
-				File.open(file_name, 'w') do |fh|
-					fh.puts body[0]
-				end
-				puts "Saved '#{title[1]}' to ./#{file_name}"
-			end
-		end
-		if watch
-			puts 'Redumping in 30 seconds...'
-			sleep 30
-		end
-	end while watch
 end
+
+begin
+	require 'sqlite3'
+rescue ::LoadError
+	puts 'Error: the sqlite3 gem is not installed!'
+	exit 1
+end
+
+database = SQLite3::Database.new "#{Dir.home}/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV1.storedata"
+watch = ARGV.size >= 2 && ARGV[1..-1].include?('watch')
+
+begin
+	database.execute('SELECT Z_PK, ZTITLE FROM ZNOTE').each do |title|
+		next unless title[1].include? ARGV[0]
+		database.execute('SELECT ZHTMLSTRING FROM ZNOTEBODY WHERE ZNOTE = ?', title[0]).each do |body|
+			file = title[1].gsub(/\W/, '_').gsub(/__/, '_') + '.html'
+			File.open file, 'w' do |fh|
+				fh.puts body[0]
+			end
+			puts "Saved '#{title[1]}' to ./#{file}"
+		end
+	end
+
+	if watch
+		puts 'Redumping in 30 seconds...'
+		sleep 30
+	end
+end while watch

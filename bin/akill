@@ -4,21 +4,16 @@
 # ==============================================================================
 # Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
 # ==============================================================================
-require 'digest/sha1'
-require 'find'
+
 if ARGV.size < 1
-	puts "Syntax: #{File.basename($PROGRAM_NAME)} <name> [force]"
+	puts "Syntax: #{File.basename $PROGRAM_NAME} <name> [force]"
 	exit 1
-else
-	`ps -A`.split("\n").each do |process|
-		next unless pmatch = /(\d+)\s+\S+\s+\S+\s+(.+)/.match(process)
-		next unless pmatch[2] =~ /\/#{ARGV[0]}\.app\//i
-		if ARGV.size >= 2 && ARGV[1] == 'force'
-			puts "Sending SIGKILL to '#{pmatch[2]}'..."
-			Process.kill('KILL', pmatch[1].to_i)
-		else
-			puts "Sending SIGINT to '#{pmatch[2]}'..."
-			Process.kill('INT', pmatch[1].to_i)
-		end
-	end
+end
+
+`ps -A`.split("\n").each do |process|
+	next unless pmatch = /(\d+)\s+\S+\s+\S+\s+(.+)/.match(process)
+	next unless pmatch[2] =~ /\/#{ARGV[0]}\.app\//i
+	signal = ARGV[1] == 'force' ? 'KILL' : 'INT'
+	puts "Sending SIG#{signal} to '#{pmatch[2]}'..."
+	Process.kill signal, pmatch[1].to_i
 end
