@@ -26,7 +26,8 @@ if gem --version >/dev/null 2>&1
 then
 	echo 'Updating RubyGems ...'
 	export GEM_CMD='gem'
-	if [ ! -w `gem env gemdir` ]
+	export GEM_DIR=`gem env gemdir`
+	if [ -d $GEM_DIR -a ! -w $GEM_DIR ]
 	then
 		export GEM_CMD='sudo gem'
 	fi
