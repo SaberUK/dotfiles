@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+# ==============================================================================
+# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
+# ==============================================================================
+# Copyright (C) 2012-2014 Peter "SaberUK" Powell <petpow@saberuk.com>
+# ==============================================================================
+
+if ARGV.empty?
+	puts "Syntax: #{File.basename $PROGRAM_NAME} <file> [file...]"
+	exit 1
+end
+
+%w(yaml uri).each do |lib|
+	require lib
+end
+
+config = YAML.load_file("#{Dir.home}/.config/scpweb.yml") rescue Hash.new
+unless config.has_key?('scp') && config.has_key?('web')
+	puts 'Fatal error: configuration file is missing the scp and/or web address!'
+	exit 1
+end
+
+links = Array.new
+
+ARGV.each do |file|
+	unless File.exist? file
+		puts "Fatal error: #{file} does not exist!"
+		exit 1
+	end
+
+	file_name = File.basename file
+	puts "Uploading '#{file_name}' ..."
+
+	links << "#{config['web']}/#{URI.encode file_name}"
+	exit 1 unless system 'scp', '-r', file, config['scp']
+	puts "Upload complete -- #{links.last}"
+end
+
+if links.size > 0
+	IO.popen 'pbcopy', 'r+' do |clipboard|
+		clipboard.print links.join ' '
+	end
+
+	message = "#{links.size} link(s) have been copied to the clipboard."
+	unless system 'terminal-notifier', '-title', 'SCP upload complete!', '-message', message
+		puts "#{message}\a"
+	end
+end
