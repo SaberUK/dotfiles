@@ -15,6 +15,9 @@
 	autosetupmerge = always
 	autosetuprebase = always
 
+[push]
+	default = simple
+
 [user]
 	name = Peter Powell
 	email = petpow@saberuk.com
