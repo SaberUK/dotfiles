@@ -17,9 +17,16 @@ end
 
 links = Array.new
 uri = URI.parse 'https://api.imgur.com/3/upload'
+images = Dir["#{Dir.home}/Desktop/Screen*.png"]
 
-Dir["#{Dir.home}/Desktop/Screen*.png"].each do |file|
-	puts "Uploading '#{File.basename file}'..."
+if images.empty?
+	STDERR.puts "Error: no images to upload!"
+	exit 1
+end
+
+puts "Uploading #{images.count} image(s) ..."
+images.each do |file|
+	puts "Uploading '#{File.basename file}' ..."
 
 	http = Net::HTTP.new uri.host, uri.port
 	http.use_ssl = true
