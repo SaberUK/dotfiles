@@ -17,7 +17,7 @@ end
 
 links = Array.new
 uri = URI.parse 'https://api.imgur.com/3/upload'
-images = Dir["#{Dir.home}/Desktop/Screen*.png"]
+images = Dir["#{Dir.home}/Desktop/{Screen Shot,Photo} *.{jpg,png}"]
 
 if images.empty?
 	STDERR.puts "Error: no images to upload!"
