@@ -55,13 +55,11 @@ images.each do |file|
 	FileUtils.move file, "#{Dir.home}/Pictures/Screenshots"
 end
 
-if links.size > 0
-	IO.popen 'pbcopy', 'r+' do |clipboard|
-		clipboard.print links.join ' '
-	end
+IO.popen 'pbcopy', 'r+' do |clipboard|
+	clipboard.print links.join ' '
+end
 
-	message = "#{links.size} link(s) have been copied to the clipboard."
-	unless system 'terminal-notifier', '-title', 'Imgur upload complete!', '-message', message
-		puts "#{message}\a"
-	end
+message = "#{links.size} link(s) have been copied to the clipboard."
+unless system 'terminal-notifier', '-title', 'Imgur upload complete!', '-message', message
+	puts "#{message}\a"
 end
