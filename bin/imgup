@@ -52,7 +52,7 @@ images.each do |file|
 	links << document['data']['link']
 	puts "Upload complete -- #{document['data']['link']}"
 
-	FileUtils.move file, "#{Dir.home}/Pictures/Screenshots"
+	FileUtils.move file, "#{Dir.home}/Pictures/Imgur"
 end
 
 IO.popen 'pbcopy', 'r+' do |clipboard|
