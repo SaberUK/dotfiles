@@ -10,18 +10,24 @@ unless system 'brew --version > /dev/null 2>&1'
 	exit 1
 end
 
-File.open 'Brewfile', 'w' do |fh|
-	fh.puts "# Brewfile generated using #{File.basename $PROGRAM_NAME} on #{Time.now}"
+OUTPUT_FILE = 'install-homebrew-packages.sh'.freeze
+
+File.open OUTPUT_FILE, 'w' do |fh|
+	fh.puts '#!/bin/sh'
+	fh.puts "# Generated using #{File.basename $PROGRAM_NAME} on #{Time.now}"
+	fh.puts 'trap "exit 1" INT'
 
 	`brew tap 2>/dev/null`.split.each do |tap|
-		fh.puts "tap #{tap}"
+		fh.puts "brew tap #{tap}"
 	end
 
 	`brew list 2>/dev/null`.split.each do |pkg|
 		if `brew info #{pkg} 2>/dev/null` =~ /Built\sfrom\ssource\swith:\s(.+)+/
-			fh.puts "install #{pkg} #{$~[1].gsub ',', ''}"
+			fh.puts "brew install #{pkg} #{$~[1].gsub ',', ''}"
 		else
-			fh.puts "install #{pkg}"
+			fh.puts "brew install #{pkg}"
 		end
 	end
 end
+
+File.chmod 0770, OUTPUT_FILE
