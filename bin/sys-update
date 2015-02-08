@@ -9,7 +9,7 @@ if apt-get --version >/dev/null 2>&1
 then
 	echo 'Updating APT ...'
 	sudo apt-get update &&
-	sudo apt-get upgrade &&
+	sudo apt-get dist-upgrade &&
 	sudo apt-get autoclean &&
 	sudo apt-get autoremove
 fi
