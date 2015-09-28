@@ -4,7 +4,7 @@ SaberUK's Dot Files
 Environment
 -----------
 
-I mainly use OS X 10.8 "Mountain Lion" but these scripts will probably work on
+I mainly use OS X 10.11 "El Capitan" but these scripts will probably work on
 other operating systems. You may wish to install the latest versions of some
 programs manually.
 

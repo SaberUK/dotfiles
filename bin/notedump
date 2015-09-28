@@ -17,7 +17,7 @@ rescue ::LoadError
 	exit 1
 end
 
-database = SQLite3::Database.new "#{Dir.home}/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV1.storedata"
+database = SQLite3::Database.new "#{Dir.home}/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV6.storedata"
 watch = ARGV.size >= 2 && ARGV[1..-1].include?('watch')
 
 begin
