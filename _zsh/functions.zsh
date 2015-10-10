@@ -12,3 +12,13 @@ function printenv()
 		command printenv $argv
 	fi
 }
+
+function safari-cleanup
+{
+	akill Safari force
+	rm -f ~/Library/Safari/History*
+	rm -f ~/Library/Caches/com.apple.Safari/Cache.db*
+	rm -rf ~/Library/Caches/com.apple.Safari/Webpage\ Previews
+	rm -rf ~/Library/Caches/Metadata/Safari/History
+	open -a Safari
+}
