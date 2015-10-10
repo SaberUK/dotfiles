@@ -32,7 +32,7 @@ Find.find(ARGV[0]).each do |path|
 		if ARGV.size >= 2 && ARGV[1] == 'sim'
 			puts "#{path} would be deleted."
 		else
-			FileUtils.rm_rf file
+			FileUtils.rm_rf path
 			puts "#{path} has been deleted."
 		end
 	end
