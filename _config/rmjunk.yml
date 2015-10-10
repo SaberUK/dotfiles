@@ -21,6 +21,7 @@ remove:
   - 'desktop.ini'
 
 skip:
+  - '.Trash'
   - '.git'
   - '.hg'
   - '.svn'
