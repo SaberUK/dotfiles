@@ -1,8 +1,4 @@
-# ==============================================================================
-# SaberUK's Dot Files <https://github.com/saberuk/dotfiles/>
-# ==============================================================================
-# Copyright (C) 2012-2015 Peter "SaberUK" Powell <petpow@saberuk.com>
-# ==============================================================================
+# SaberUK's Dot Files (C) 2012-2016 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 ExcludeFiles = [ '.gitignore', 'Rakefile', 'README.md' ].freeze
 
