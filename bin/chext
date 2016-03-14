@@ -4,7 +4,7 @@
 require 'find'
 
 if ARGV.size < 3
-	puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> <old> <new> [sim]"
+	STDERR.puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> <old> <new> [sim]"
 	exit 1
 end
 
@@ -13,7 +13,7 @@ Find.find(ARGV[0]).each do |file|
 	next unless File.extname(file) == ARGV[1]
 
 	new_file = file.chomp(ARGV[1]) + ARGV[2]
-	if ARGV.size >= 4 && ARGV[3] == 'sim'					
+	if ARGV.size >= 4 && ARGV[3] == 'sim'
 		puts "#{file} would be renamed to #{new_file}!"
 	else
 		File.rename file, new_file

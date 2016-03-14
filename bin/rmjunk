@@ -2,7 +2,7 @@
 # SaberUK's Dot Files (C) 2012-2016 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 if ARGV.size < 1
-	puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> [sim]"
+	STDERR.puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> [sim]"
 	exit 1
 end
 
@@ -12,7 +12,7 @@ end
 
 config = YAML.load_file "#{Dir.home}/.config/rmjunk.yml"
 unless config.has_key?('remove') && config.has_key?('skip')
-	puts 'Fatal error: configuration file is missing the remove and/or skip entries!'
+	STDERR.puts 'Fatal error: configuration file is missing the remove and/or skip entries!'
 	exit 1
 end
 

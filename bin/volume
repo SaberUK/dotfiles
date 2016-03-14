@@ -2,10 +2,10 @@
 # SaberUK's Dot Files (C) 2012-2016 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 if ARGV.size < 1
-	puts "Syntax: #{File.basename $PROGRAM_NAME} <volume>"
+	STDERR.puts "Syntax: #{File.basename $PROGRAM_NAME} <volume>"
 	exit 1
 elsif /^\d+(?:\.\d+)?$/ !~ ARGV[0] || Float(ARGV[0]) < 0 || Float(ARGV[0]) > 100
-	puts 'Error: volume must be a valid decimal number between 0 and 100!'
+	STDERR.puts 'Error: volume must be a valid decimal number between 0 and 100!'
 	exit 1
 end
 

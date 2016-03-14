@@ -2,7 +2,7 @@
 # SaberUK's Dot Files (C) 2012-2016 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 if ARGV.size < 1
-	puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> [all] [rec]"
+	STDERR.puts "Syntax: #{File.basename $PROGRAM_NAME} <dir> [all] [rec]"
 	exit 1
 end
 

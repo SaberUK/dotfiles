@@ -2,7 +2,7 @@
 # SaberUK's Dot Files (C) 2012-2016 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 if ARGV.size < 3
-	puts "Syntax: #{File.basename $PROGRAM_NAME} <old> <new> <out> [verbose]"
+	STDERR.puts "Syntax: #{File.basename $PROGRAM_NAME} <old> <new> <out> [verbose]"
 	exit 1
 end
 
@@ -17,7 +17,7 @@ old_png = ChunkyPNG::Image.from_file ARGV[0]
 new_png = ChunkyPNG::Image.from_file ARGV[1]
 
 if [old_png.height, old_png.width] != [new_png.height, new_png.width]
-	puts 'Error: unable to compare images of different sizes!'
+	STDERR.puts 'Error: unable to compare images of different sizes!'
 	exit 1
 end
 

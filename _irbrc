@@ -5,5 +5,5 @@ begin
  		load entry
 	end
 rescue Exception => e
-	puts "#{e.class}: #{e.message}"
+	STDERR.puts "#{e.class}: #{e.message}"
 end

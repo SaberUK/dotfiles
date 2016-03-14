@@ -2,7 +2,7 @@
 # SaberUK's Dot Files (C) 2012-2016 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 if ARGV.empty?
-	puts "Syntax: #{File.basename $PROGRAM_NAME} <file> [file...]"
+	STDERR.puts "Syntax: #{File.basename $PROGRAM_NAME} <file> [file...]"
 	exit 1
 end
 
@@ -20,7 +20,7 @@ links = Array.new
 
 ARGV.each do |file|
 	unless File.exist? file
-		puts "Fatal error: #{file} does not exist!"
+		STDERR.puts "Fatal error: #{file} does not exist!"
 		exit 1
 	end
 
