@@ -6,10 +6,17 @@ if ARGV.size < 1
 	exit 1
 end
 
+success = false
 `ps -A`.split("\n").each do |process|
 	next unless pmatch = /(\d+)\s+\S+\s+\S+\s+(.+)/.match(process)
 	next unless pmatch[2] =~ /\/#{ARGV[0]}\.app\//i
 	signal = ARGV[1] == 'force' ? 'KILL' : 'INT'
 	puts "Sending SIG#{signal} to '#{pmatch[2]}'..."
 	Process.kill signal, pmatch[1].to_i
+	success = true
+end
+
+unless success
+	STDERR.puts "Error: unable to find processes to kill matching '#{ARGV[0]}'!"
+	exit 1
 end
