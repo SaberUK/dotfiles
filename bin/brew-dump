@@ -6,6 +6,18 @@ unless system 'brew --version > /dev/null 2>&1'
 	exit 1
 end
 
+require 'json'
+
+brew_packages = { }
+brew_taps = [ ]
+
+JSON.parse(`brew info --installed --json=v1 2>/dev/null`).each do |pkg|
+	if pkg['name'] != pkg['full_name'] && pkg['full_name'] =~ /^(?<tap>[^\s\\]+\/[^\s\\]+)\/\S+$/
+		brew_taps << $~[:tap]
+	end
+	brew_packages[pkg['name']] = pkg['installed'].first['used_options']
+end
+
 OUTPUT_FILE = 'install-homebrew-packages.sh'.freeze
 
 File.open OUTPUT_FILE, 'w' do |fh|
@@ -13,16 +25,12 @@ File.open OUTPUT_FILE, 'w' do |fh|
 	fh.puts "# Generated using #{File.basename $PROGRAM_NAME} on #{Time.now}"
 	fh.puts 'trap "exit 1" INT'
 
-	`brew tap 2>/dev/null`.split.each do |tap|
-		fh.puts "brew tap #{tap}"
+	brew_taps.uniq.each do |tap|
+		fh.puts "brew tap --full #{tap}"
 	end
 
-	`brew list 2>/dev/null`.split.each do |pkg|
-		if `brew info #{pkg} 2>/dev/null` =~ /Built\sfrom\ssource\swith:\s(.+)+/
-			fh.puts "brew install #{pkg} #{$~[1].gsub ',', ''}"
-		else
-			fh.puts "brew install #{pkg}"
-		end
+	brew_packages.each do |name, options|
+		fh.puts "brew install #{name} #{options.join ' '}"
 	end
 end
 
