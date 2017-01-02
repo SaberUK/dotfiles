@@ -9,7 +9,7 @@ end
 require 'json'
 
 brew_packages = { }
-brew_taps = [ ]
+brew_taps = [ 'homebrew/core' ]
 
 JSON.parse(`brew info --installed --json=v1 2>/dev/null`).each do |pkg|
 	if pkg['name'] != pkg['full_name'] && pkg['full_name'] =~ /^(?<tap>[^\s\\]+\/[^\s\\]+)\/\S+$/
