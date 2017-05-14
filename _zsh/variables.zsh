@@ -8,7 +8,6 @@ export BROWSER='/usr/bin/open'
 export EDITOR='/usr/bin/nano'
 export PS1='%n@%m:%~$ '
 export LESS='--chop-long-lines --raw-control-chars'
-export SOURCEMOD='/opt/sourcemod'
 
 # Scripts
 if [ -d "$HOME/bin" ]; then

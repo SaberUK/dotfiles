@@ -10,9 +10,6 @@ remove:
   - '.DS_Store'
   - '.TemporaryItems'
   - '._*'
-  - '.bzr.log'
-  - '.dub'
-  - '.rust'
   - 'Thumbs.db'
   - 'desktop.ini'
 

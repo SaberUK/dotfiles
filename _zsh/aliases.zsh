@@ -1,10 +1,5 @@
 # SaberUK's Dot Files (C) 2012-2017 Peter "SaberUK" Powell <petpow@saberuk.com>
 
-# JRuby aliases
-alias jake='jruby -S rake' # Rake
-alias jem='jruby -S gem' # RubyGems
-alias jrb='jruby -S irb' # Interactive Ruby
-
 # LS aliases.
 alias ls='ls -FLh' # Show entry types, follow symlinks, use unit suffixes.
 alias la='ls -A' # Show almost all entries.
