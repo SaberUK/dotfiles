@@ -1,6 +1,6 @@
 # SaberUK's Dot Files (C) 2012-2017 Peter "SaberUK" Powell <petpow@saberuk.com>
 
-ExcludeFiles = [ '.gitignore', 'Rakefile', 'README.md' ].freeze
+ExcludeFiles = [ '.gitignore', 'osa', 'Rakefile', 'README.md' ].freeze
 
 task :default do
 	print `rake --tasks`
