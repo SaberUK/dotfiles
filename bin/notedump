@@ -13,7 +13,13 @@ rescue ::LoadError
 	exit 1
 end
 
-database = SQLite3::Database.new "#{Dir.home}/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV6.storedata"
+storedata = Dir["#{Dir.home}/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV*.storedata"]
+if storedata.empty?
+	STDERR.puts 'Error: unable to find the Apple Notes database file!'
+	exit 1
+end
+
+database = SQLite3::Database.new storedata[0]
 watch = ARGV.size >= 2 && ARGV[1..-1].include?('watch')
 
 begin
