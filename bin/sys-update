@@ -14,7 +14,7 @@ if brew --version >/dev/null 2>&1
 then
 	echo 'Updating Homebrew ...'
 	brew update &&
-	brew upgrade &&
+	brew upgrade
 	brew cleanup -s
 fi
 
