@@ -1,4 +1,4 @@
-# SaberUK's Dot Files (C) 2012-2018 Peter "SaberUK" Powell <petpow@saberuk.com>
+# SaberUK's Dot Files (C) 2012-2019 Peter "SaberUK" Powell <petpow@saberuk.com>
 
 function printenv()
 {

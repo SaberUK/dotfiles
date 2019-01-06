@@ -11,7 +11,7 @@ programs manually.
 License
 -------
 
-Copyright (C) 2012-2018 Peter "SaberUK" Powell &lt;petpow@saberuk.com&gt;
+Copyright (C) 2012-2019 Peter "SaberUK" Powell &lt;petpow@saberuk.com&gt;
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
