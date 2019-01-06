@@ -8,8 +8,13 @@ end
 
 require 'json'
 
-brew_packages = { }
-brew_taps = [ 'homebrew/core' ]
+brew_casks = Array.new
+brew_packages = Hash.new
+brew_taps = %w(homebrew/cask homebrew/core)
+
+`brew cask list 2>/dev/null`.each_line do |line|
+	brew_casks << line
+end
 
 JSON.parse(`brew info --installed --json=v1 2>/dev/null`).each do |pkg|
 	if pkg['name'] != pkg['full_name'] && pkg['full_name'] =~ /^(?<tap>[^\s\\]+\/[^\s\\]+)\/\S+$/
@@ -31,6 +36,10 @@ File.open OUTPUT_FILE, 'w' do |fh|
 
 	brew_packages.each do |name, options|
 		fh.puts "brew install #{name} #{options.join ' '}"
+	end
+
+	brew_casks.each do |cask|
+		fh.puts "brew cask install #{cask}"
 	end
 end
 
