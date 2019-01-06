@@ -7,7 +7,7 @@ unset HISTFILE
 export BROWSER='/usr/bin/open'
 export EDITOR='/usr/bin/nano'
 export PS1='%n@%m:%~$ '
-export LESS='--chop-long-lines --raw-control-chars'
+export LESS='--chop-long-lines --RAW-CONTROL-CHARS'
 
 # Scripts
 if [ -d "$HOME/bin" ]; then
