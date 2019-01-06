@@ -7,11 +7,6 @@ alias ll='ls -Al' # Show almost all entries, use long format.
 alias lr='ls -lR' # Use long format, list recursively.
 alias l='ls' # Shortcut.
 
-# Make aliases
-alias bmake='bsdmake'
-alias gmake='make'
-alias pregmake='premake4 gmake && gmake'
-
 # Windows compatibility aliases.
 alias cls='clear'
 alias dir='ls'
