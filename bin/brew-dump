@@ -20,7 +20,10 @@ JSON.parse(`brew info --installed --json=v1 2>/dev/null`).each do |pkg|
 	if pkg['name'] != pkg['full_name'] && pkg['full_name'] =~ /^(?<tap>[^\s\\]+\/[^\s\\]+)\/\S+$/
 		brew_taps << $~[:tap]
 	end
-	brew_packages[pkg['name']] = pkg['installed'].first['used_options']
+	brew_packages[pkg['name']] = {
+		needs_link: pkg['keg_only'],
+		options: pkg['installed'].first['used_options']
+	}
 end
 
 OUTPUT_FILE = 'install-homebrew-packages.sh'.freeze
@@ -34,8 +37,9 @@ File.open OUTPUT_FILE, 'w' do |fh|
 		fh.puts "brew tap --full #{tap}"
 	end
 
-	brew_packages.each do |name, options|
-		fh.puts "brew install #{name} #{options.join ' '}"
+	brew_packages.each do |name, info|
+		fh.puts "brew install #{name} #{info[:options].join ' '}"
+		fh.puts "brew link --force #{name}" if info[:needs_link]
 	end
 
 	brew_casks.each do |cask|
