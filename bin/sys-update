@@ -18,6 +18,14 @@ then
 	brew cleanup -s
 fi
 
+if pkgin --version >/dev/null 2>&1
+then
+	echo 'Updating pkgin ...'
+	sudo pkgin -y update &&
+	sudo pkgin -y full-update &&
+	sudo pkgin -y clean
+fi
+
 if gem --version >/dev/null 2>&1
 then
 	echo 'Updating RubyGems ...'
