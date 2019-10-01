@@ -15,7 +15,7 @@ alias tracert='traceroute'
 
 # Misc aliases
 alias find='find -L' # Follow symlinks when finding.
-alias grep='grep --exclude-dir ".git" --exclude-dir ".hg" --exclude-dir ".svn"'
+alias grep='grep --exclude-dir ".git" --exclude-dir ".hg" --exclude-dir ".svn" --extended-regexp'
 alias mkdir='mkdir -p' # Create intermediate directories as required.
 alias preview='open -a Preview'
 alias ssp='ssh -D 12468' # Create a local SOCKS server which tunnels over SSH.
