@@ -17,8 +17,9 @@ fi
 # Homebrew
 export HOMEBREW_BUILD_FROM_SOURCE='1'
 export HOMEBREW_MAKE_JOBS='4'
-export HOMEBREW_NO_EMOJI='1'
+export HOMEBREW_NO_AUTO_UPDATE='1'
 export HOMEBREW_NO_ANALYTICS='1'
+export HOMEBREW_NO_EMOJI='1'
 if [ -d "/brew/bin" ]; then
 	export PATH="/brew/bin:$PATH"
 fi
