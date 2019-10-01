@@ -56,6 +56,6 @@ IO.popen 'pbcopy', 'r+' do |clipboard|
 end
 
 message = "#{links.size} link(s) have been copied to the clipboard."
-unless system 'terminal-notifier', '-title', 'Imgur upload complete!', '-message', message
+unless system 'osascript', '-e', "display notification \"#{message}\" with title \"Imgur upload complete!\""
 	puts "#{message}\a"
 end

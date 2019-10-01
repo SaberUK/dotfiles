@@ -38,7 +38,7 @@ if links.size > 0
 	end
 
 	message = "#{links.size} link(s) have been copied to the clipboard."
-	unless system 'terminal-notifier', '-title', 'SCP upload complete!', '-message', message
+	unless system 'osascript', '-e', "display notification \"#{message}\" with title \"SCP upload complete!\""
 		puts "#{message}\a"
 	end
 end
