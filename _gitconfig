@@ -1,4 +1,4 @@
-# SaberUK's Dot Files (C) 2012-2019 Peter "SaberUK" Powell <petpow@saberuk.com>
+# SPDX-License-Identifier: ISC
 
 [alias]
 	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short

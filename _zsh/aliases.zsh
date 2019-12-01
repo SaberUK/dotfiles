@@ -1,4 +1,4 @@
-# SaberUK's Dot Files (C) 2012-2019 Peter "SaberUK" Powell <petpow@saberuk.com>
+# SPDX-License-Identifier: ISC
 
 # LS aliases.
 alias ls='ls -FLh' # Show entry types, follow symlinks, use unit suffixes.
