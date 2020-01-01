@@ -1,4 +1,4 @@
 # SPDX-License-Identifier: ISC
 
-scp: saberuk@saberuk.com:/var/www/saberuk.com/files.saberuk.com
-web: http://files.saberuk.com
+scp: sadie@sadie.moe:/var/www/sadie.moe/files.sadie.moe
+web: https://files.sadie.moe
