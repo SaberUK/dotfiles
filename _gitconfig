@@ -3,6 +3,7 @@
 [alias]
 	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	rmdel = !git rm $(git ls-files --deleted)
+	wip = !git add --all && git commit --message \"WIP - $(date).\"
 
 [branch]
 	autosetupmerge = always
