@@ -27,7 +27,7 @@ ARGV.each do |file|
 	file_name = File.basename file
 	puts "Uploading '#{file_name}' ..."
 
-	links << "#{config['web']}/#{URI.encode file_name}"
+	links << "#{config['web']}/#{URI::DEFAULT_PARSER.escape file_name}"
 	exit 1 unless system 'scp', '-r', file, config['scp']
 	puts "Upload complete -- #{links.last}"
 end
